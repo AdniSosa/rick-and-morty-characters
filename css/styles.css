@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Lexend:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Quicksand:wght@300..700&family=Shadows+Into+Light+Two&family=Space+Mono&display=swap');
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -25,6 +28,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  font-family: "Space Mono", serif;
 }
 ol, ul {
 	list-style: none;
@@ -48,6 +52,7 @@ table {
   display: flex;
   width: 100%;
   background-color: #60fbbf;
+  
 }
 
 .pagination {
@@ -75,6 +80,32 @@ table {
 ul {  
   padding-top: 100px;
   list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+gap {
+  font-weight: bold;
+}
+
+.character-div {
+  width: 200px;
+  margin-top: 10px;
+  padding: 7px;
+  border: 1px gray solid;
+}
+
+img {
+  width: 100%;
+}
+
+li {
+  margin-top: 5px;
+  line-height: 15px;
 }
 
 

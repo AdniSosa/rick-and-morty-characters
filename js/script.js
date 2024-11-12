@@ -1,21 +1,72 @@
 const prevButton = document.getElementById('prev-page');
 const nextButton = document.getElementById('next-page');
 const charactersList = document.getElementById('character-list');
-const charactersAPI = 'https://rickandmortyapi.com/api/character';
+const charactersURL = 'https://rickandmortyapi.com/api/character';
+const urlButtons = 'https://rickandmortyapi.com/api/character/?page=';
+let currentPage = 1;
+const totalPages = 42; 
 
-window.addEventListener('DOMContentLoaded', () => {
-    fetch(charactersAPI)
-    .then((response) => {
-        if(!response.ok) {
-            throw new Error('La solicitud no ha sido exitosa')
-        }
-        return response.json();
+const characters = (page) => {
+    fetch( `${urlButtons}${page}`)
+    .then(response => response.json())
+    .then(data => {
+        //console.log(data.results);
+        const characters = data.results;
+        
+        characters.forEach(character => {
+                    
+            const nameList = document.createElement('li');
+            const specieList = document.createElement('li');
+            const imgList = document.createElement('img');
+            const characterDiv = document.createElement('div');
+            characterDiv.classList.add('character-div');
+            
+            charactersList.appendChild(characterDiv);
+            characterDiv.appendChild(imgList);
+            characterDiv.appendChild(nameList);
+            characterDiv.appendChild(specieList);
+            
+            
+            const characterName = character.name;
+            const characterSpecie = character.species;
+            const characterImg = character.image;
+            
+            nameList.innerHTML = `<gap>Name: </gap>${characterName}`;
+            specieList.innerHTML = `<gap>Specie: </gap>${characterSpecie}`;
+            imgList.src = characterImg;
+            imgList.alt = `Personaje de Rick & Morty: ${characterName}`;
+            });
+        
     })
-    .then((data) => {
-        console.log(data.results);
-        for (let i = 0; i < data.results.length; i++) {
-            charactersList.textContent = data.results[i].name;
-        }
-        return charactersList;
-    })
+    .catch(error => charactersList.textContent = 'Error: No se pudo obtener la información.')           
+    
+}
+
+window.addEventListener("load", () => {
+    characters(currentPage);
+  });
+
+nextButton.addEventListener('click', () => {
+    if (currentPage >= 1 && currentPage < totalPages) {
+        currentPage++;
+        console.log(currentPage);
+        charactersList.innerHTML = ' ';
+        characters(currentPage);
+    } else {
+        nextButton.disabled = true;
+    }
+    
 })
+
+prevButton.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        console.log(currentPage);
+        charactersList.innerHTML = ' ';
+        characters(currentPage);
+    } else {
+        prevButton.disabled = true;
+    }
+})
+
+
