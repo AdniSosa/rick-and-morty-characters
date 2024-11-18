@@ -10,7 +10,7 @@ const characters = (page) => {
     fetch( `${urlButtons}${page}`)
     .then(response => response.json())
     .then(data => {
-        //console.log(data.results);
+        console.log(data.results);
         const characters = data.results;
         
         characters.forEach(character => {
@@ -31,8 +31,8 @@ const characters = (page) => {
             const characterSpecie = character.species;
             const characterImg = character.image;
             
-            nameList.innerHTML = `<gap>Name: </gap>${characterName}`;
-            specieList.innerHTML = `<gap>Specie: </gap>${characterSpecie}`;
+            nameList.innerHTML = `<span>Name: </span>${characterName}`;
+            specieList.innerHTML = `<span>Specie: </span>${characterSpecie}`;
             imgList.src = characterImg;
             imgList.alt = `Personaje de Rick & Morty: ${characterName}`;
             });
